@@ -27,7 +27,13 @@ ADD . $APP_HOME
 
 RUN mkdir -p tmp/puma
 RUN export CONFIGURE_OPTS="--build=aarch64-unknown-linux-gnu" \
-  && /root/.rbenv/bin/rbenv install
+  && /root/.rbenv/bin/rbenv install\
+  && /root/.rbenv/shims/gem install rails -v 3.0.20 \
+  && /root/.rbenv/shims/gem install bundler -v 1.0.20
+
+
+RUN git config --global user.email "diego@example.com"\
+  && git config --global user.name "Diego Gomez"
 
 # Vim commnands in shell
 RUN echo "set -o vi" >> ~/.bashrc \
