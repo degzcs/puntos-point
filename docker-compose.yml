@@ -15,6 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: ./start
     image: app:dev
     volumes:
       - .:/app
@@ -22,7 +23,7 @@ services:
     depends_on:
       - db
     ports:
-      - "3000:3000"
+      - "3100:3000"
   bundle:
     image: busybox
     volumes:
