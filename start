@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Starting the application"
+##bundle check || bundle install
+#bundle exec rake db:create
+#bundle exec rake db:migrate
+##RAILS_ENV=test bundle exec rake db:migrate
+#bundle exec rake db:seed
+##bundle exec rails s -b 0.0.0.0
+#bundle exec puma -C config/puma.rb
+#
