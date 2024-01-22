@@ -27,6 +27,11 @@ $ docker exec -it  puntos-point_app_1 bundle exec rails c
 $ docker exec -it  puntos-point_app_1 zsh
 ```
 
+```zsh
+export GIT_SSH_COMMAND="ssh -i ~/.ssh/diego_example"
+gp origin main
+```
+
 ### Tests
 
 ```bash

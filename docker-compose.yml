@@ -19,6 +19,7 @@ services:
     image: app:dev
     volumes:
       - .:/app
+      - ~/.ssh/temporal:/root/.ssh
       - bundle:/box
     depends_on:
       - db
