@@ -4,16 +4,15 @@ FROM ubuntu:16.04
 RUN apt-get update -y
 
 # Install necessary packages
-RUN apt-get install -y build-essential curl zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt1-dev
-RUN apt-get install -y build-essential libpq-dev vim imagemagick
-RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt-get install -y  libssl-dev libreadline-dev zlib1g-dev nodejs git-core
-RUN npm install -g yarn
+RUN apt-get install -y build-essential curl zlib1g-dev libssl-dev libreadline-dev\
+   libyaml-dev libxml2-dev libxslt1-dev libpq-dev vim imagemagick zsh\
+   && curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh\
+   && bash nodesource_setup.sh\
+   && apt-get install -y  libssl-dev libreadline-dev zlib1g-dev nodejs git-core\
+   && npm install -g yarn
 
 
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash\
-  && export PATH=$PATH:/root/.rbenv/bin:/root/.rbenv/shims\
   && echo 'eval "$(/root/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
 
 ENV APP_HOME /app
@@ -22,10 +21,9 @@ WORKDIR $APP_HOME
 
 ENV  BUNDLE_PATH $APP_HOME/.gems
 ENV  BUNDLE_PATH /box
-ENV  PATH /shared/bin:$PATH
+ENV  PATH /shared/bin:root/.rbenv/bin:/root/.rbenv/shims:$PATH
 ADD . $APP_HOME
 
-RUN mkdir -p tmp/puma
 RUN export CONFIGURE_OPTS="--build=aarch64-unknown-linux-gnu" \
   && /root/.rbenv/bin/rbenv install\
   && /root/.rbenv/shims/gem install rails -v 3.0.20 \
@@ -33,11 +31,14 @@ RUN export CONFIGURE_OPTS="--build=aarch64-unknown-linux-gnu" \
 
 
 RUN git config --global user.email "diego@example.com"\
-  && git config --global user.name "Diego Gomez"
+  && git config --global user.name "Diego Gomez"\
+  && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\
+  && chsh -s $(which zsh)
+
 
 # Vim commnands in shell
-RUN echo "set -o vi" >> ~/.bashrc \
-   && echo "stty -ixon" >> ~/.bashrc \
+RUN echo "set -o vi" >> ~/.zshrc \
+   && echo "stty -ixon" >> ~/.zshrc \
    && echo "set editing-mode vi" >> ~/.inputrc \
    && echo "set keymap vi-command" >> ~/.inputrc
 
