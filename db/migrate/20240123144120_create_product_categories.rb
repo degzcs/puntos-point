@@ -1,5 +1,5 @@
 class CreateProductCategories < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :product_categories do |t|
       t.references :product
       t.references :category
@@ -9,5 +9,9 @@ class CreateProductCategories < ActiveRecord::Migration
 
     add_index :product_categories, :product_id
     add_index :product_categories, :category_id
+  end
+
+  def self.down
+    drop_table :product_categories
   end
 end
