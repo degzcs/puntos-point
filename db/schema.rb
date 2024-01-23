@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20240123144413) do
     t.datetime "updated_at"
   end
 
-  create_table "purchase_customers", :force => true do |t|
+  create_table "purchases", :force => true do |t|
     t.integer  "product_id"
     t.integer  "customer_id"
     t.decimal  "total"
