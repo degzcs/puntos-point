@@ -8,8 +8,8 @@ default: &default
 
 development:
   <<: *default
-  database: hodinkee_blog_development
+  database: app_development
 
 test:
   <<: *default
-  database: hodinkee_blog_test
+  database: app_test
