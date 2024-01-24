@@ -15,6 +15,11 @@ App::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  resources :categories, only: [] do
+    resources :products, only: [] do
+      get 'top', on: :collection
+    end
+  end
   # Sample resource route with options:
   #   resources :products do
   #     member do
