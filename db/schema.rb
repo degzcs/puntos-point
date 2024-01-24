@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20240123144413) do
+ActiveRecord::Schema.define(:version => 20240124122109) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20240123144413) do
     t.string   "first_name"
     t.string   "last_name"
     t.text     "id_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.string   "name"
+    t.text     "image"
+    t.integer  "photoable_id"
+    t.string   "photoable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

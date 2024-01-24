@@ -31,6 +31,8 @@ GEM
     addressable (2.4.0)
     arel (2.0.10)
     builder (2.1.2)
+    carrierwave (0.5.8)
+      activesupport (~> 3.0)
     coderay (1.1.3)
     crack (0.4.5)
       rexml
@@ -111,6 +113,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave
   database_cleaner
   pg
   pry

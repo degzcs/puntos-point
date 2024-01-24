@@ -5,4 +5,8 @@
 customer = Customer.create(first_name: 'test', last_name: 'test', id_number: 123123)
 category = Category.create(name: 'transportation')
 product = Product.create(name: 'mazda 323', description: 'mazda', type: 'car', price: 400.000, categories: [category])
+photo =  Photo.new(name: 'image', image: 'image')
+photo.photoable_id = product.id
+photo.photoable_type = 'Product'
+photo.save
 purchase = Purchase.create(customer: customer, product: product, quantity: 3)
