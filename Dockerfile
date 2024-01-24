@@ -36,6 +36,7 @@ RUN git config --global user.email "diego@example.com"\
   && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\
   && chsh -s $(which zsh)
 
+ENV GIT_SSH_COMMAND="ssh -i ~/.ssh/diego_example"
 
 # Vim commnands in shell
 RUN echo "set -o vi" >> ~/.zshrc \
