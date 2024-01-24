@@ -9,7 +9,7 @@ gem 'devise'
 gem 'bcrypt'
 
 group :development, :test do
-  gem 'pry', require: false
+  gem 'debugger'
   gem 'rspec-rails'
 end
 
