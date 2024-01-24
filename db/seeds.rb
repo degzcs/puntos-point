@@ -10,3 +10,4 @@ photo.photoable_id = product.id
 photo.photoable_type = 'Product'
 photo.save
 purchase = Purchase.create(customer: customer, product: product, quantity: 3)
+admin = Admin.create(email: 'test@test.com', password: '123123', password_confirmation: '123123')
