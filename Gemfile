@@ -15,8 +15,7 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'vcr'
-  gem 'webmock'
+  gem "factory_girl_rails"
   gem 'rspec-its'
 end
 
