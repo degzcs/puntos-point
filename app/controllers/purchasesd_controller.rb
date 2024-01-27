@@ -1,19 +1,28 @@
 class PurchasesController < ApplicationController
-
   def index
+    render json: purchases
+  end
+
+  def granularity_report
+    granularity = params[:granularity] || 'day'
+
+    result = purchases.by_granularity(granularity)
+    result = result && result.map(&:attributes) || []
+    render json: result
+  end
+
+  private
+
+  def purchases
     filters = build_filters
     @purchases = if filters.any?
                    filters.inject(Purchase) do |purchases, filter|
                      purchases.send(filter[:name], *filter[:value])
                    end
                  else
-                    Purchase.all
+                   Purchase.all_persisted
                  end
-
-    render json: @purchases
   end
-
-  private
 
   def build_filters
     filters = []

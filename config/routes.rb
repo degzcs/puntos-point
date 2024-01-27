@@ -20,7 +20,9 @@ App::Application.routes.draw do
     get 'top_best_sellers_by_category', on: :collection
   end
 
-  resources :purchases, only: [:index]
+  resources :purchases, only: [:index] do
+    get 'granularity_report', on: :collection
+  end
 
   # Sample resource route with options:
   #   resources :products do

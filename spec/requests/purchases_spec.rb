@@ -72,5 +72,39 @@ describe 'PurchasesController', :type => :request do
         expect(response.body).to include(purchase2.total.to_s)
       end
     end
+
+    context 'by granularity' do
+      context 'when granularity is day' do
+        let(:granularity) { 'day' }
+
+        context 'when range is 1 week' do
+          let(:customer) { create(:customer) }
+          let(:product) { create(:product) }
+          let(:start_date) { '2024-01-20' }
+          let(:end_date) { '2024-01-26' }
+          let!(:purchase1) { create(:purchase, customer: customer, product: product, created_at: start_date) }
+          let!(:purchase2) { create(:purchase, customer: customer, product: product, created_at: end_date) }
+
+          before do
+            purchase1.created_at = start_date
+            purchase1.save
+
+            purchase2.created_at = start_date.to_date + 1.day
+            purchase2.save
+          end
+
+          it 'retrieves purchases by granularity' do
+            get "/purchases/granularity_report?start_date=#{start_date}&end_date=#{end_date}&granularity=#{granularity}"
+            expect(response).to be_success
+            response_body = JSON.parse(response.body)
+            expected_response = [
+              {"purchase_count"=>"1", "purchase_granularity"=>"2024-01-20 00:00:00"},
+              {"purchase_count"=>"1", "purchase_granularity"=>"2024-01-21 00:00:00"}
+            ]
+            expect(response_body).to eq(expected_response)
+          end
+        end
+      end
+    end
   end
 end
