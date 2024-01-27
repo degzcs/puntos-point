@@ -30,7 +30,7 @@ describe Purchase, :type => :model do
         let(:purchase2) { create(:purchase, customer: customer) }
 
         it 'retrieves purchases by customer id' do
-          expect(Purchase.by_customer(customer.id)).to include(purchase1, purchase2)
+          expect(Purchase.by_customer_id(customer.id)).to include(purchase1, purchase2)
         end
       end
 
@@ -41,7 +41,7 @@ describe Purchase, :type => :model do
         let(:purchase2) { create(:purchase, product: product) }
 
         it 'retrieves purchases by category id' do
-          expect(Purchase.by_category(category.id)).to include(purchase1, purchase2)
+          expect(Purchase.by_category_id(category.id)).to include(purchase1, purchase2)
         end
       end
     end

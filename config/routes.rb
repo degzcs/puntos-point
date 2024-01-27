@@ -20,6 +20,8 @@ App::Application.routes.draw do
     get 'top_best_sellers_by_category', on: :collection
   end
 
+  resources :purchases, only: [:index]
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
