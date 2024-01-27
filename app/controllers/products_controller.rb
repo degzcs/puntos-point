@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-  def top
-    @products = Category.find(params[:category_id]).products.top
+
+  def top_products_by_category
+    @products = Product.top_products_by_category
     render json: @products
   end
 end
