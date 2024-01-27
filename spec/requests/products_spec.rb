@@ -21,4 +21,12 @@ describe 'ProductsController', :type => :request do
     expect(response).to be_success
     expect(response.body).to include(product1.name)
   end
+
+  it 'retrieves the top 3 best sellerproducts by category' do
+    get "/products/top_best_sellers_by_category?limit=3"
+    expect(response).to be_success
+    expect(response.body).to include(product1.name)
+    expect(response.body).to include(product2.name)
+    expect(response.body).to include(product4.name)
+  end
 end

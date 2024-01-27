@@ -39,6 +39,24 @@ class Product < ActiveRecord::Base
     Product.find_by_sql(query.to_sql)
   end
 
+  def self.top_best_sellers_by_category(top_number)
+    sql = <<-SQL
+    SELECT products.* , subquery.purchase_total, subquery.row_num
+FROM (
+    SELECT purchases.product_id, product_categories.category_id, COUNT(*) AS purchases_count, SUM(purchases.total) AS purchase_total,
+           ROW_NUMBER() OVER (PARTITION BY product_categories.category_id ORDER BY SUM(purchases.total)  DESC) AS row_num
+    FROM purchases
+    INNER JOIN product_categories ON purchases.product_id = product_categories.product_id
+    GROUP BY purchases.product_id, product_categories.category_id
+) AS subquery
+INNER JOIN products ON subquery.product_id = products.id
+WHERE subquery.row_num <= ?
+ORDER BY subquery.category_id
+    SQL
+
+    Product.find_by_sql([sql, top_number])
+  end
+
   #
   # Instance methods
   #

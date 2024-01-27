@@ -17,6 +17,7 @@ App::Application.routes.draw do
 
   resources :products, only: [] do
     get 'top_products_by_category', on: :collection
+    get 'top_best_sellers_by_category', on: :collection
   end
 
   # Sample resource route with options:

@@ -13,6 +13,9 @@ product2 = Product.create(name: 'apple', description: 'delicious', type: 'fuits'
 product3 = Product.create(name: 'audi 323', description: 'audi', type: 'car', price: 100_000.0, categories: [category])
 product4 = Product.create(name: 'iphone', description: 'iphone 15', type: 'mobile', price: 1_000.0, categories: [category3])
 product5 = Product.create(name: 'Samsung', description: 'A 15', type: 'mobile', price: 100.0, categories: [category3])
+product6 = Product.create(name: 'Xioami', description: 'X15', type: 'mobile', price: 100.0, categories: [category3])
+product7 = Product.create(name: 'orange', description: 'yummy!', type: 'fuits', price: 1, categories: [category2])
+product8 = Product.create(name: 'F12', description: 'Ferrari', type: 'car', price: 300.0, categories: [category])
 
 photo =  Photo.new(name: 'image', image: 'image')
 photo.photoable_id = product.id
@@ -25,5 +28,8 @@ purchase3 = Purchase.create(customer: customer, product: product3, quantity: 1)
 purchase4 = Purchase.create(customer: customer, product: product3, quantity: 4)
 purchase5 = Purchase.create(customer: customer, product: product4, quantity: 2)
 purchase6 = Purchase.create(customer: customer, product: product5, quantity: 2)
+purchase7 = Purchase.create(customer: customer, product: product6, quantity: 5)
+purchase8 = Purchase.create(customer: customer, product: product7, quantity: 8)
+purchase9 = Purchase.create(customer: customer, product: product8, quantity: 3)
 
 admin = Admin.create(email: 'test@test.com', password: '123123', password_confirmation: '123123')

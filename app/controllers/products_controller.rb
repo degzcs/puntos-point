@@ -4,4 +4,10 @@ class ProductsController < ApplicationController
     @products = Product.top_products_by_category
     render json: @products
   end
+
+  def top_best_sellers_by_category
+    limit = params[:limit] || 3
+    @products = Product.top_best_sellers_by_category(limit)
+    render json: @products
+  end
 end

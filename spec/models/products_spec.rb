@@ -17,5 +17,9 @@ describe Product, :type => :model do
     it 'retrieves the top products by each category' do
       expect(Product.top_products_by_category).to include(product2, product4)
     end
+
+    it 'retrieves the top 1 best sellerproducts by category' do
+      expect(Product.top_best_sellers_by_category(1)).to include(product2, product4)
+    end
   end
 end
