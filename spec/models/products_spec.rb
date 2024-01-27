@@ -14,12 +14,19 @@ describe Product, :type => :model do
     let!(:purchase2) { create_list(:purchase, 5, product: product2) }
     let!(:purchase3) { create_list(:purchase, 2, product: product4) }
 
-    it 'retrieves the top products by each category' do
-      expect(Product.top_products_by_category).to include(product2, product4)
+    context 'top products by category' do
+      it 'retrieves the top products by each category' do
+        expect(Product.top_products_by_category).to include(product2, product4)
+        expect(Product.top_products_by_category).not_to include(product1, product3)
+      end
     end
 
-    it 'retrieves the top 1 best sellerproducts by category' do
-      expect(Product.top_best_sellers_by_category(1)).to include(product2, product4)
+    context 'best sellers' do
+      let!(:purchase1) { create_list(:purchase, 13, product: product1) }
+
+      it 'retrieves the top 1 best sellerproducts by category' do
+        expect(Product.top_best_sellers_by_category(1)).to include(product2, product4)
+      end
     end
   end
 end

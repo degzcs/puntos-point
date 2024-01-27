@@ -42,6 +42,8 @@ class Product < ActiveRecord::Base
   end
 
   def self.top_best_sellers_by_category(top_number)
+    top_number = top_number.to_i
+
     Rails.cache.fetch("best_sellers_query", :expires_in => 1.minute) do
       sql = <<-SQL
     SELECT products.* , subquery.purchase_total, subquery.row_num
