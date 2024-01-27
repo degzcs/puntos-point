@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :customer do
     sequence(:first_name) { |n| "customer#{n}" }
     sequence(:last_name) { |n| "bar#{n}" }
@@ -27,20 +27,20 @@ FactoryGirl.define do
 
     trait :with_photo do
       after(:create) do |product|
-        product.photos << FactoryGirl.create(:photo)
+        product.photos << FactoryBot.create(:photo)
       end
     end
 
     trait :with_category do
       after(:create) do |product|
-        product.categories << FactoryGirl.create(:category)
+        product.categories << FactoryBot.create(:category)
       end
     end
   end
 
   factory :purchase do
-    customer { FactoryGirl.create(:customer) }
-    product { FactoryGirl.create(:product) }
+    customer { FactoryBot.create(:customer) }
+    product { FactoryBot.create(:product) }
     quantity 3
 
     trait :with_product do
@@ -49,7 +49,7 @@ FactoryGirl.define do
       end
 
       after(:build) do |purchase, e|
-        purchase.product = FactoryGirl.create(:product, price: e.price)
+        purchase.product = FactoryBot.create(:product, price: e.price)
       end
     end
   end
