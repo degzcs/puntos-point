@@ -32,15 +32,18 @@ class Product < ActiveRecord::Base
   # This method is used to find the top product for each category.
   # It is used in the controller to display the top product for each category.
   def self.top_products_by_category
-    query = Product.select("products.*")
-      .joins("INNER JOIN (#{purchase_count_by_category.to_sql}) AS prod_and_category ON products.id = prod_and_category.product_id")
-      .where("(prod_and_category.category_id, prod_and_category.purchase_count) IN (#{categories_and_max_purchases.to_sql})")
+    Rails.cache.fetch("top_products_query", :expires_in => 1.minute) do
+      query = Product.select("products.*")
+        .joins("INNER JOIN (#{purchase_count_by_category.to_sql}) AS prod_and_category ON products.id = prod_and_category.product_id")
+        .where("(prod_and_category.category_id, prod_and_category.purchase_count) IN (#{categories_and_max_purchases.to_sql})")
 
-    Product.find_by_sql(query.to_sql)
+      Product.find_by_sql(query.to_sql)
+    end
   end
 
   def self.top_best_sellers_by_category(top_number)
-    sql = <<-SQL
+    Rails.cache.fetch("best_sellers_query", :expires_in => 1.minute) do
+      sql = <<-SQL
     SELECT products.* , subquery.purchase_total, subquery.row_num
 FROM (
     SELECT purchases.product_id, product_categories.category_id, COUNT(*) AS purchases_count, SUM(purchases.total) AS purchase_total,
@@ -52,9 +55,10 @@ FROM (
 INNER JOIN products ON subquery.product_id = products.id
 WHERE subquery.row_num <= ?
 ORDER BY subquery.category_id
-    SQL
+      SQL
 
-    Product.find_by_sql([sql, top_number])
+      Product.find_by_sql([sql, top_number])
+    end
   end
 
   #
