@@ -23,7 +23,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "mazda#{n}" }
     description "mazda"
     type "car"
-    price 400.000
+    price { 400.000 }
     categories { [FactoryGirl.create(:category)] }
 
     trait :with_photo do
@@ -43,5 +43,15 @@ FactoryGirl.define do
     customer { FactoryGirl.create(:customer) }
     product { FactoryGirl.create(:product) }
     quantity 3
+
+    trait :with_product do
+      transient do
+        price { 10.0 }
+      end
+
+      after(:build) do |purchase, e|
+        purchase.product = FactoryGirl.create(:product, price: e.price)
+      end
+    end
   end
 end
