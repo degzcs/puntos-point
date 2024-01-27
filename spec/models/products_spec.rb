@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 describe Product, :type => :model do
+  before :each do
+    Rails.cache.clear
+  end
+
   context '#scopes' do
     let!(:product1) { create(:product, :with_category) }
-    let(:category1) { product1.categories.first }
+    let!(:category1) { product1.categories.first }
     let!(:product2) { create(:product, categories: [category1]) }
 
     let!(:product3) { create(:product, :with_category) }
-    let(:category2) { product3.categories.first }
+    let!(:category2) { product3.categories.first }
     let!(:product4) { create(:product, categories: [category2]) }
 
     let!(:purchase1) { create_list(:purchase, 3, product: product1) }
@@ -22,10 +26,20 @@ describe Product, :type => :model do
     end
 
     context 'best sellers' do
-      let!(:purchase1) { create_list(:purchase, 13, product: product1) }
+      before :each do
+        create_list(:purchase, 13, product: product1)
+      end
 
       it 'retrieves the top 1 best sellerproducts by category' do
-        expect(Product.top_best_sellers_by_category(1)).to include(product2, product4)
+        result = Product.top_best_sellers_by_category(1)
+        expect(result).to include(product1, product4)
+        expect(result).not_to include(product2, product3)
+      end
+
+      it 'retrieves the top 2 best sellerproducts by category' do
+        result2 = Product.top_best_sellers_by_category(2)
+        expect(result2).to include(product1, product2, product4)
+        expect(result2).not_to include(product3)
       end
     end
   end

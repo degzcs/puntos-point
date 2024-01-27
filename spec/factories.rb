@@ -24,7 +24,6 @@ FactoryGirl.define do
     description "mazda"
     type "car"
     price { 400.000 }
-    categories { [FactoryGirl.create(:category)] }
 
     trait :with_photo do
       after(:create) do |product|
