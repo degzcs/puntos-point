@@ -35,7 +35,7 @@ class PurchasesController < ApplicationController
   def build_simple_id_filter(name)
     return unless params[name]
 
-    { name: "by_#{name}", value: [params[name]]}
+    { name: "by_#{name}", value: [params[name]] }
   end
 
   def build_range_filter

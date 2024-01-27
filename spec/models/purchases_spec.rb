@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Purchase, :type => :model do
+describe Purchase, type: :model do
   context 'callbacks' do
     let(:quantity) { 2 }
     let(:price) { 5.0 }
@@ -21,7 +21,7 @@ describe Purchase, :type => :model do
       let(:purchase2) { create(:purchase, created_at: end_date) }
 
       it 'retrieves purchases within the range' do
-        expect(Purchase.range(start_date, end_date)).to include(purchase1, purchase2)
+        expect(described_class.range(start_date, end_date)).to include(purchase1, purchase2)
       end
 
       context 'by customer id' do
@@ -30,7 +30,7 @@ describe Purchase, :type => :model do
         let(:purchase2) { create(:purchase, customer: customer) }
 
         it 'retrieves purchases by customer id' do
-          expect(Purchase.by_customer_id(customer.id)).to include(purchase1, purchase2)
+          expect(described_class.by_customer_id(customer.id)).to include(purchase1, purchase2)
         end
       end
 
@@ -41,7 +41,7 @@ describe Purchase, :type => :model do
         let(:purchase2) { create(:purchase, product: product) }
 
         it 'retrieves purchases by category id' do
-          expect(Purchase.by_category_id(category.id)).to include(purchase1, purchase2)
+          expect(described_class.by_category_id(category.id)).to include(purchase1, purchase2)
         end
 
         context 'by granularity' do
@@ -61,9 +61,9 @@ describe Purchase, :type => :model do
               let(:end_date) { '2024-01-26' }
 
               it 'retrieves purchases by granularity' do
-                result = Purchase.range(start_date, end_date).by_granularity(granularity)
+                result = described_class.range(start_date, end_date).by_granularity(granularity)
                 first_result = result.first.attributes
-                expect(result.to_a.count).to eq(1)
+                expect(result.to_a.size).to eq(1)
                 expect(first_result['purchase_granularity']).to eq '2024-01-26 00:00:00'
                 expect(first_result['purchase_count']).to eq(2.to_s)
               end
@@ -83,12 +83,12 @@ describe Purchase, :type => :model do
               let(:end_date) { '2024-01-26' }
 
               it 'retrieves purchases by granularity' do
-                result = Purchase.range(start_date, end_date).by_granularity(granularity)
+                result = described_class.range(start_date, end_date).by_granularity(granularity)
                 expected_result = [
-                  {"purchase_count"=>"1", "purchase_granularity"=>"2024-01-26 00:00:00"},
-                  {"purchase_count"=>"1", "purchase_granularity"=>"2024-01-26 05:00:00"}
+                  { 'purchase_count' => '1', 'purchase_granularity' => '2024-01-26 00:00:00' },
+                  { 'purchase_count' => '1', 'purchase_granularity' => '2024-01-26 05:00:00' }
                 ]
-                expect(result.to_a.count).to eq(2)
+                expect(result.to_a.size).to eq(2)
                 expect(result.map(&:attributes)).to eq(expected_result)
               end
             end
@@ -102,9 +102,9 @@ describe Purchase, :type => :model do
               let(:end_date) { '2024-01-26' }
 
               it 'retrieves purchases by granularity' do
-                result = Purchase.range(start_date, end_date).by_granularity(granularity)
+                result = described_class.range(start_date, end_date).by_granularity(granularity)
                 first_result = result.first.attributes
-                expect(result.to_a.count).to eq(1)
+                expect(result.to_a.size).to eq(1)
                 expect(first_result['purchase_granularity']).to eq '2024-01-22 00:00:00'
                 expect(first_result['purchase_count']).to eq(3.to_s)
               end
@@ -118,13 +118,13 @@ describe Purchase, :type => :model do
                 let(:end_date) { '2024-02-31' }
 
                 it 'retrieves purchases by granularity' do
-                  result = Purchase.range(start_date, end_date).by_granularity(granularity)
+                  result = described_class.range(start_date, end_date).by_granularity(granularity)
                   expected_result = [
-                    {"purchase_count"=>"3", "purchase_granularity"=>"2024-01-01 00:00:00"},
-                    {"purchase_count"=>"1", "purchase_granularity"=>"2024-02-01 00:00:00"},
-                    {"purchase_count"=>"2", "purchase_granularity"=>"2024-03-01 00:00:00"}
+                    { 'purchase_count' => '3', 'purchase_granularity' => '2024-01-01 00:00:00' },
+                    { 'purchase_count' => '1', 'purchase_granularity' => '2024-02-01 00:00:00' },
+                    { 'purchase_count' => '2', 'purchase_granularity' => '2024-03-01 00:00:00' }
                   ]
-                  expect(result.to_a.count).to eq(3)
+                  expect(result.to_a.size).to eq(3)
                   expect(result.map(&:attributes)).to eq(expected_result)
                 end
               end
@@ -138,11 +138,11 @@ describe Purchase, :type => :model do
                 let(:end_date) { '2025-01-01' }
 
                 it 'retrieves purchases by granularity' do
-                  result = Purchase.range(start_date, end_date).by_granularity(granularity)
+                  result = described_class.range(start_date, end_date).by_granularity(granularity)
                   expected_result = [
-                    {"purchase_count"=>"6", "purchase_granularity"=>"2024-01-01 00:00:00"},
+                    { 'purchase_count' => '6', 'purchase_granularity' => '2024-01-01 00:00:00' }
                   ]
-                  expect(result.to_a.count).to eq(1)
+                  expect(result.to_a.size).to eq(1)
                   expect(result.map(&:attributes)).to eq(expected_result)
                 end
               end

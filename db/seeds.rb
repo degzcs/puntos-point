@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
-customer = Customer.create(first_name: 'test', last_name: 'test', id_number: 123123)
+customer = Customer.create(first_name: 'test', last_name: 'test', id_number: 123_123)
 
 category = Category.create(name: 'transportation')
 category2 = Category.create(name: 'food')

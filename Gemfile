@@ -16,7 +16,6 @@ end
 group :test do
   gem 'rubocop-rspec'
   gem 'database_cleaner'
-  gem "factory_bot"
+  gem 'factory_bot'
   gem 'rspec-its'
 end
-

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Product, :type => :model do
+describe Product, type: :model do
   before :each do
     Rails.cache.clear
   end
@@ -20,8 +20,8 @@ describe Product, :type => :model do
 
     context 'top products by category' do
       it 'retrieves the top products by each category' do
-        expect(Product.top_products_by_category).to include(product2, product4)
-        expect(Product.top_products_by_category).not_to include(product1, product3)
+        expect(described_class.top_products_by_category).to include(product2, product4)
+        expect(described_class.top_products_by_category).not_to include(product1, product3)
       end
     end
 
@@ -31,13 +31,13 @@ describe Product, :type => :model do
       end
 
       it 'retrieves the top 1 best sellerproducts by category' do
-        result = Product.top_best_sellers_by_category(1)
+        result = described_class.top_best_sellers_by_category(1)
         expect(result).to include(product1, product4)
         expect(result).not_to include(product2, product3)
       end
 
       it 'retrieves the top 2 best sellerproducts by category' do
-        result2 = Product.top_best_sellers_by_category(2)
+        result2 = described_class.top_best_sellers_by_category(2)
         expect(result2).to include(product1, product2, product4)
         expect(result2).not_to include(product3)
       end

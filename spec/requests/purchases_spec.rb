@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'PurchasesController', :type => :request do
+describe 'PurchasesController', type: :request do
   let(:admin) { FactoryGirl.create(:admin) }
   let!(:product1) { create(:product, :with_category) }
   let(:category1) { product1.categories.first }
@@ -98,8 +98,8 @@ describe 'PurchasesController', :type => :request do
             expect(response).to be_success
             response_body = JSON.parse(response.body)
             expected_response = [
-              {"purchase_count"=>"1", "purchase_granularity"=>"2024-01-20 00:00:00"},
-              {"purchase_count"=>"1", "purchase_granularity"=>"2024-01-21 00:00:00"}
+              { 'purchase_count' => '1', 'purchase_granularity' => '2024-01-20 00:00:00' },
+              { 'purchase_count' => '1', 'purchase_granularity' => '2024-01-21 00:00:00' }
             ]
             expect(response_body).to eq(expected_response)
           end

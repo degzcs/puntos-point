@@ -11,18 +11,18 @@ FactoryBot.define do
 
   factory :admin do
     sequence(:email) { |n| "test#{n}@test.com" }
-    password "123123"
+    password '123123'
   end
 
   factory :photo do
     sequence(:name) { |n| "test#{n}" }
-    image "image"
+    image 'image'
   end
 
   factory :product do
     sequence(:name) { |n| "mazda#{n}" }
-    description "mazda"
-    type "car"
+    description 'mazda'
+    type 'car'
     price { 400.000 }
 
     trait :with_photo do
