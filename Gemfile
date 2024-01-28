@@ -8,6 +8,7 @@ gem 'carrierwave'
 gem 'devise'
 gem 'bcrypt'
 gem 'jwt'
+gem "audited-activerecord", "~> 3.0"
 
 group :development, :test do
   gem 'debugger'
