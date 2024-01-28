@@ -5,6 +5,9 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = 'test@example.com'
+  config.warden do |manager|
+     manager.default_strategies(scope: :user).unshift :api_jwt
+   end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

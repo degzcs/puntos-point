@@ -7,7 +7,7 @@ class ApiJwtStrategy < Warden::Strategies::Base
     admin = Admin.from_jwt(api_token)
 
     if admin
-      success!(user)
+      success!(admin)
     else
       fail!('Invalid email or password')
     end
