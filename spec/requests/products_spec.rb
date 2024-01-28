@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'ProductsController', type: :request do
+describe 'Api::ProductsController', type: :request do
   before :each do
     Rails.cache.clear
   end
@@ -19,7 +19,7 @@ describe 'ProductsController', type: :request do
   let!(:purchase3) { create_list(:purchase, 2, product: product4) }
 
   it 'retrieves the top products by category' do
-    get '/products/top_products_by_category'
+    get '/api/products/top_products_by_category'
     response_body = JSON.parse(response.body)
     response_ids = response_body.map { |product| product['id'] }
     expect(response).to be_success
@@ -27,7 +27,7 @@ describe 'ProductsController', type: :request do
   end
 
   it 'retrieves the top 3 best sellerproducts by category' do
-    get '/products/top_best_sellers_by_category?limit=3'
+    get '/api/products/top_best_sellers_by_category?limit=3'
     response_body = JSON.parse(response.body)
     response_ids = response_body.map { |product| product['id'] }
     expect(response).to be_success

@@ -1,4 +1,4 @@
-class PurchasesController < ApplicationController
+class Api::PurchasesController < Api::ApplicationController
   def index
     render json: purchases
   end

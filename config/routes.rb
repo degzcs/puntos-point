@@ -14,15 +14,23 @@ App::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  namespace :api do
+     resources :sessions, only: [] do
+        collection do
+           post 'login'
+           delete 'logout'
+        end
+     end
+     resources :products, only: [] do
+       get 'top_products_by_category', on: :collection
+       get 'top_best_sellers_by_category', on: :collection
+     end
 
-  resources :products, only: [] do
-    get 'top_products_by_category', on: :collection
-    get 'top_best_sellers_by_category', on: :collection
+     resources :purchases, only: [:index] do
+       get 'granularity_report', on: :collection
+     end
   end
 
-  resources :purchases, only: [:index] do
-    get 'granularity_report', on: :collection
-  end
 
   # Sample resource route with options:
   #   resources :products do

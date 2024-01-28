@@ -7,6 +7,7 @@ gem 'pg'
 gem 'carrierwave'
 gem 'devise'
 gem 'bcrypt'
+gem 'jwt'
 
 group :development, :test do
   gem 'debugger'

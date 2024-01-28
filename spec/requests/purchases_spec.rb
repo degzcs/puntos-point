@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'PurchasesController', type: :request do
+describe 'Api::PurchasesController', type: :request do
   let(:admin) { FactoryGirl.create(:admin) }
   let!(:product1) { create(:product, :with_category) }
   let(:category1) { product1.categories.first }
@@ -22,7 +22,7 @@ describe 'PurchasesController', type: :request do
       let!(:purchase2) { create(:purchase, created_at: end_date) }
 
       it 'retrieves purchases within the range' do
-        get "/purchases?start_date=#{start_date}&end_date=#{end_date}"
+        get "/api/purchases?start_date=#{start_date}&end_date=#{end_date}"
         expect(response).to be_success
         expect(response.body).to include(purchase1.total.to_s)
         expect(response.body).to include(purchase2.total.to_s)
@@ -35,7 +35,7 @@ describe 'PurchasesController', type: :request do
       let!(:purchase2) { create(:purchase, customer: customer) }
 
       it 'retrieves purchases by customer id' do
-        get "/purchases?customer_id=#{customer.id}"
+        get "/api/purchases?customer_id=#{customer.id}"
         expect(response).to be_success
         expect(response.body).to include(purchase1.total.to_s)
         expect(response.body).to include(purchase2.total.to_s)
@@ -49,7 +49,7 @@ describe 'PurchasesController', type: :request do
       let!(:purchase2) { create(:purchase, product: product) }
 
       it 'retrieves purchases by category id' do
-        get "/purchases?category_id=#{category.id}"
+        get "/api/purchases?category_id=#{category.id}"
         expect(response).to be_success
         expect(response.body).to include(purchase1.total.to_s)
         expect(response.body).to include(purchase2.total.to_s)
@@ -66,7 +66,7 @@ describe 'PurchasesController', type: :request do
       let!(:purchase2) { create(:purchase, customer: customer, product: product, created_at: end_date) }
 
       it 'retrieves purchases by category id' do
-        get "/purchases?category_id=#{category.id}&customer_id=#{customer.id}&start_date=#{start_date}&end_date=#{end_date}"
+        get "/api/purchases?category_id=#{category.id}&customer_id=#{customer.id}&start_date=#{start_date}&end_date=#{end_date}"
         expect(response).to be_success
         expect(response.body).to include(purchase1.total.to_s)
         expect(response.body).to include(purchase2.total.to_s)
@@ -94,7 +94,7 @@ describe 'PurchasesController', type: :request do
           end
 
           it 'retrieves purchases by granularity' do
-            get "/purchases/granularity_report?start_date=#{start_date}&end_date=#{end_date}&granularity=#{granularity}"
+            get "/api/purchases/granularity_report?start_date=#{start_date}&end_date=#{end_date}&granularity=#{granularity}"
             expect(response).to be_success
             response_body = JSON.parse(response.body)
             expected_response = [
