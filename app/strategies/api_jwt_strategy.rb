@@ -16,6 +16,6 @@ class ApiJwtStrategy < Warden::Strategies::Base
   private
 
   def api_token
-    env['HTTP_AUTHORIZATION'].to_s.remove('Bearer ')
+    env['HTTP_AUTHORIZATION'].to_s.split(' ').last
   end
 end

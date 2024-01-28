@@ -37,6 +37,14 @@ export GIT_SSH_COMMAND="ssh -i ~/.ssh/diego_example"
 gp origin main
 ```
 
+### API requests examples
+
+#### Granularity Report
+
+```zsh
+$ curl http://localhost:3000/api/purchases/granularity_report  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+```
+
 ### Tests
 
 ```bash
