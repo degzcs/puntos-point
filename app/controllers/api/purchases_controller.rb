@@ -1,14 +1,16 @@
 class Api::PurchasesController < Api::ApplicationController
   def index
-    render json: purchases
+    render json: serialize_response(purchases)
   end
 
   def granularity_report
     granularity = params[:granularity] || 'day'
 
-    result = purchases.by_granularity(granularity)
-    result = result && result.map(&:attributes) || []
-    render json: result
+    service = GranularityReport.new(purchases, granularity)
+    sevice.call
+    response = service.valid? ? service.result : service.errors
+
+    render json: serialize_response(response)
   end
 
   private

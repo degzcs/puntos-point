@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-describe 'Api::PurchasesController', type: :request do
-  let(:admin) { FactoryGirl.create(:admin) }
+describe Api::PurchasesController, type: :request do
+  let(:admin) { create(:admin) }
+
   let!(:product1) { create(:product, :with_category) }
   let(:category1) { product1.categories.first }
   let!(:product2) { create(:product, categories: [category1]) }
@@ -13,6 +14,10 @@ describe 'Api::PurchasesController', type: :request do
   let!(:purchase1) { create_list(:purchase, 3, product: product1) }
   let!(:purchase2) { create_list(:purchase, 5, product: product2) }
   let!(:purchase3) { create_list(:purchase, 2, product: product4) }
+
+  before do
+    allow_any_instance_of(Api::PurchasesController).to receive(:authenticate_user!).and_return(true)
+  end
 
   context 'filters' do
     context 'by range' do

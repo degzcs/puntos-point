@@ -18,6 +18,10 @@ describe 'Api::ProductsController', type: :request do
   let!(:purchase2) { create_list(:purchase, 5, product: product2) }
   let!(:purchase3) { create_list(:purchase, 2, product: product4) }
 
+  before do
+    allow_any_instance_of(Api::ProductsController).to receive(:authenticate_user!).and_return(true)
+  end
+
   it 'retrieves the top products by category' do
     get '/api/products/top_products_by_category'
     response_body = JSON.parse(response.body)
