@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  audited
   self.inheritance_column = 'sty_type'
 
   has_and_belongs_to_many :categories, join_table: :product_categories
