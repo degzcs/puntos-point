@@ -7,7 +7,7 @@ class Api::PurchasesController < Api::ApplicationController
     granularity = params[:granularity] || 'day'
 
     service = GranularityReport.new(purchases, granularity)
-    sevice.call
+    service.call
     response = service.valid? ? service.result : service.errors
 
     render json: serialize_response(response)

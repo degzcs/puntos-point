@@ -11,6 +11,6 @@ class BaseService
   end
 
   def valid?
-    errors.empty?
+    errors.nil? || errors.empty?
   end
 end

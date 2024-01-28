@@ -43,6 +43,21 @@ gp origin main
 
 ```zsh
 $ curl http://localhost:3000/api/purchases/granularity_report?granularity=day  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+$ curl http://localhost:3000/api/purchases?start_date='2024-01-26'&&end_date='2024-01-27'&&granularity=day  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+```
+NOTE: all the filters from Purchases can be used here.
+
+#### Purchase filters
+
+```zsh
+$ curl http://localhost:3000/api/purchases?start_date='2024-01-26'&&end_date='2024-01-27'  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+$ curl http://localhost:3000/api/purchases?category_id=1  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+$ curl http://localhost:3000/api/purchases?customer_id=1  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+```
+
+### Get JWT
+```zsh
+$ curl http://localhost:3000/api/sessions/login -d 'email=test@test.com&password=123123' -X POST
 ```
 
 ### Tests
