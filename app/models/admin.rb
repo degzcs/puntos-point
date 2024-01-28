@@ -2,6 +2,8 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
+  scope :other_admins, ->(admin_id) { where('id <> ?', admin_id) }
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
