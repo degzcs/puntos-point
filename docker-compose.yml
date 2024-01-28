@@ -27,6 +27,10 @@ services:
       - db
     ports:
       - "3100:3000"
+    environment:
+      - SECRET_KEY_BASE=this-is-a-secure-secret-key-12-factors
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USERNAME=postgres
   bundle:
     image: busybox
     volumes:

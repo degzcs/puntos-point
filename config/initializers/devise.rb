@@ -5,18 +5,6 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = 'test@example.com'
-  # TODO: move to env
- # config.secret_key = '251ca2af97c3eb90d5235d73406eb6dc34c3fa0dce5f733a4df8a86af2ccb43997422cbf4ad1a1e89fc9665db6dea0bbc9df807b397339c405f143dba7b31ee9'
-
- # config.jwt do |jwt| jwt.secret = Rails.application.secrets.secret_key_base
- #    jwt.dispatch_requests = [
- #      ['POST', %r{^/api/login$}]
- #    ]
- #    jwt.revocation_requests = [
- #      ['DELETE', %r{^/api/logout$}]
- #    ]
- #    jwt.expiration_time = 1.day.to_i
- #  end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

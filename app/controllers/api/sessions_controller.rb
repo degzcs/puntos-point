@@ -1,8 +1,8 @@
 module Api
   class SessionsController < ApplicationController
     def login
-      admin = Admin.find_by(email: params[:email])
-      if adming && admin.valid_password?(params[:password])
+      admin = Admin.find_by_email(params[:email])
+      if admin && admin.valid_password?(params[:password])
         render json: { token: admin.generate_jwt }
       else
         render json: { error: 'Invalid email or password' }, status: :unauthorized
