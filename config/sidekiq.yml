@@ -2,8 +2,3 @@
 :timeout: 60
 :verbose: true
   - default
-:scheduler:
-  :report_worker:
-    cron: '0 * * * * *'
-    class: ReportWorker
-    queue: default
