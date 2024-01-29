@@ -1,5 +1,6 @@
-:scheduler:
-  schedule:
-    cron: '0 * * * * *'
-    class: ReportWorker
-    queue: default
+report_worker:
+  cron: 0 4 * * * # '0 * * * * *'
+  class: ReportWorker
+  enabled: true
+  queue: default
+  description: 'Report Worker'

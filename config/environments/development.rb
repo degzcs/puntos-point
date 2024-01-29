@@ -31,4 +31,12 @@ App::Application.configure do
 
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: "localhost:3000"}
+
+  config.after_initialize do
+    # Sidekiq.schedule = YAML.load_file(File.expand_path('../../scheduler.yml', __FILE__))
+    schedule_conf = YAML.load_file(File.expand_path('../../scheduler.yml', __FILE__))
+    puts schedule_conf
+    Sidekiq.set_schedule(schedule_conf.keys.first, schedule_conf.values.first)
+    Sidekiq::Scheduler.dynamic = true
+  end
 end
