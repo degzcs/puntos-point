@@ -42,17 +42,17 @@ gp origin main
 #### Granularity Report
 
 ```zsh
-$ curl http://localhost:3000/api/purchases/granularity_report?granularity=day  -X GET -H 'Authorization: Bearer this-is-the-jwt'
-$ curl http://localhost:3000/api/purchases?start_date='2024-01-26'&&end_date='2024-01-27'&&granularity=day  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+$ curl http://localhost:3000/api/purchases/granularity_report?granularity=day  -X GET -H 'Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhZG1pbl9pZCI6MX0.PDZgqpWWOwycnOQ0Tf3S353MHDOwxC8n1k05GJ7Tjgk'
+$ curl http://localhost:3000/api/purchases?start_date='2024-01-26'&&end_date='2024-01-27'&&granularity=day  -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhZG1pbl9pZCI6MX0.PDZgqpWWOwycnOQ0Tf3S353MHDOwxC8n1k05GJ7Tjgk'
 ```
 NOTE: all the filters from Purchases can be used here.
 
 #### Purchase filters
 
 ```zsh
-$ curl http://localhost:3000/api/purchases?start_date='2024-01-26'&&end_date='2024-01-27'  -X GET -H 'Authorization: Bearer this-is-the-jwt'
-$ curl http://localhost:3000/api/purchases?category_id=1  -X GET -H 'Authorization: Bearer this-is-the-jwt'
-$ curl http://localhost:3000/api/purchases?customer_id=1  -X GET -H 'Authorization: Bearer this-is-the-jwt'
+$ curl http://localhost:3000/api/purchases?start_date='2024-01-26'&&end_date='2024-01-27'  -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhZG1pbl9pZCI6MX0.PDZgqpWWOwycnOQ0Tf3S353MHDOwxC8n1k05GJ7Tjgk'
+$ curl http://localhost:3000/api/purchases?category_id=1  -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhZG1pbl9pZCI6MX0.PDZgqpWWOwycnOQ0Tf3S353MHDOwxC8n1k05GJ7Tjgk'
+$ curl http://localhost:3000/api/purchases?customer_id=1  -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhZG1pbl9pZCI6MX0.PDZgqpWWOwycnOQ0Tf3S353MHDOwxC8n1k05GJ7Tjgk'
 ```
 
 ### Get JWT
