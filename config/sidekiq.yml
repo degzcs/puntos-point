@@ -1,6 +1,9 @@
 :concurrency: 3
 :timeout: 60
 :verbose: true
-:queues:
   - default
-  - mailers
+:scheduler:
+  :report_worker:
+    cron: '0 * * * * *'
+    class: ReportWorker
+    queue: default

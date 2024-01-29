@@ -10,6 +10,7 @@ gem 'bcrypt'
 gem 'jwt'
 gem "audited-activerecord", "~> 3.0"
 gem 'sidekiq','3.0.2'
+gem 'sidekiq-scheduler','3.2.2'
 gem 'timers', '~> 1.1.0'
 gem 'celluloid', '~> 0.15.2'
 gem 'connection_pool', '~> 2.0.0'
