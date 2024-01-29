@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+echo "Removing tmp files"
+rm -rf /app/tmp/letter_opener
+
 echo "Starting the application"
 /root/.rbenv/bin/rbenv rehash
 bundle check || bundle install

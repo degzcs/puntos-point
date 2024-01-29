@@ -1,0 +1,10 @@
+Hi Admis
+
+This is the list of purchase from yesterday
+
+ID |      Product      | Quantity | Total
+  -----------------------------------------------
+<% @purchases.each do |purchase| %>
+  <%= purchase.id %>| <%= purchase.product.name %> | <%= purchase.quantity %> | <%= purchase.total %>
+  -----------------------------------------------
+<% end %>

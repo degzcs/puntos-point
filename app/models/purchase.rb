@@ -26,6 +26,8 @@ class Purchase < ActiveRecord::Base
     select("date_trunc('#{granularity}', purchases.created_at) as purchase_granularity, count(*) as purchase_count").group('purchase_granularity')
   }
 
+  scope :from_yesterday, -> { where(created_at: (Date.yesterday.beginning_of_day..Date.yesterday.end_of_day)) }
+
   private
 
   def calculate_total

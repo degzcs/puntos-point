@@ -4,6 +4,7 @@ class GranularityReport < BaseService
   def initialize(purchases, granularity)
     @purchases = purchases
     @granularity = granularity
+    super()
   end
 
   def call

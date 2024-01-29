@@ -3,6 +3,7 @@ class FilterBuilder < BaseService
 
   def initialize(params)
     @params = params
+    super()
   end
 
   def call

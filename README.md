@@ -60,6 +60,12 @@ $ curl http://localhost:3000/api/purchases?customer_id=1  -X GET -H 'Authorizati
 $ curl http://localhost:3000/api/sessions/login -d 'email=test@test.com&password=123123' -X POST
 ```
 
+### Emails
+Go to the `tmp/letter_opener` folder to check the emails. For example
+
+```zsh
+cat tmp/letter_opener/1706501071_3021488_d70cc59/plain.html
+```
 ### Tests
 
 ```bash
