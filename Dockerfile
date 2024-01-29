@@ -6,8 +6,7 @@ RUN apt-get update -y
 # Install necessary packages
 RUN apt-get install -y build-essential curl zlib1g-dev libssl-dev libreadline-dev\
    libyaml-dev libxml2-dev libxslt1-dev libpq-dev vim imagemagick zsh\
-   && postgresql postgresql-contrib\
-   && xdg-utils w3m lynx elinks links2\
+   postgresql postgresql-contrib xdg-utils w3m lynx elinks links2\
    && curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh\
    && bash nodesource_setup.sh\
    && apt-get install -y  libssl-dev libreadline-dev zlib1g-dev nodejs git-core\

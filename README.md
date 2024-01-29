@@ -37,6 +37,11 @@ export GIT_SSH_COMMAND="ssh -i ~/.ssh/diego_example"
 gp origin main
 ```
 
+Avoiding Sidekiq container
+```zsh
+docker-compose start db app cache
+```
+
 ### API requests examples
 
 #### Granularity Report
