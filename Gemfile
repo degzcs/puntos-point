@@ -9,6 +9,8 @@ gem 'devise'
 gem 'bcrypt'
 gem 'jwt'
 gem "audited-activerecord", "~> 3.0"
+gem 'sidekiq','3.0.2'
+gem "letter_opener", '1.6.0', group: :development
 
 group :development, :test do
   gem 'debugger'

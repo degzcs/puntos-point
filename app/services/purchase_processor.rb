@@ -15,7 +15,6 @@ class PurchaseProcessor < BaseService
       number_of_purchases = Purchase.by_customer_id(purchase.customer_id).count
       if number_of_purchases.zero?
         customer_name = purchase.customer.first_name
-        debugger
         PurchaseMailer.first_purchase(current_admin, other_admins, customer_name).deliver
       end
 

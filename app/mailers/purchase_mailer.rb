@@ -10,3 +10,4 @@ class PurchaseMailer < ActionMailer::Base
     mail to: admin.email, cc: cc, othesubject: "First purchase"
   end
 end
+

@@ -6,6 +6,9 @@ bundle check || bundle install
 bundle exec rake db:create
 bundle exec rake db:migrate
 #RAILS_ENV=test bundle exec rake db:migrate
-bundle exec rake db:seed
+if [ RUN_SEED = "true" ]; then
+  echo "Running seed"
+  bundle exec rake db:seed
+fi
 bundle exec rails s -b 0.0.0.0
 

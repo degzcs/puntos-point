@@ -1,11 +1,11 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or create!d alongside the db with db:setup).
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
 require 'audited'
 
-admin = Admin.create!(email: 'test@test.com', password: '123123', password_confirmation: '123123')
-admin2 = Admin.create!(email: 'tes2@test.com', password: '123123', password_confirmation: '123123')
+admin = Admin.create(email: 'test@test.com', password: '123123', password_confirmation: '123123')
+admin2 = Admin.create(email: 'tes2@test.com', password: '123123', password_confirmation: '123123')
 
 Audited.audit_class.as_user(admin) do
   attributes = { first_name: 'test', last_name: 'test', id_number: 123_123 }
@@ -13,15 +13,15 @@ Audited.audit_class.as_user(admin) do
   attributes.each do |key, value|
     customer.send("#{key}=", value)
   end
-  customer.save!
+  customer.save
 
   category = Category.new()
   category.name = 'transportation'
-  category.save!
+  category.save
 
   category2 = Category.new()
   category2.name = 'food'
-  category2.save!
+  category2.save
 
   category3 = Category.new()
   category3.name = 'electronics'
@@ -31,7 +31,7 @@ Audited.audit_class.as_user(admin) do
       product.send("#{key}=", value)
     end
     product.categories << category
-    product.save!
+    product.save
   end
 
   product = Product.new
@@ -59,7 +59,7 @@ Audited.audit_class.as_user(admin) do
   assign_product(product6, attributes, category3)
 
   product7 = Product.new
-  attributes = { name: 'orange', description: 'yummy!', type: 'fuits', price: 1 }
+  attributes = { name: 'orange', description: 'yummy', type: 'fuits', price: 1 }
   assign_product(product7, attributes, category2)
 
   product8 = Product.new
