@@ -1,0 +1,10 @@
+#!/bin/zsh
+echo "Starting the application"
+/root/.rbenv/bin/rbenv rehash
+bundle check || bundle install
+bundle exec rake db:create
+bundle exec rake db:migrate
+
+echo "Starting the async application"
+bundle exec sidekiq -C config/sidekiq.yml
+

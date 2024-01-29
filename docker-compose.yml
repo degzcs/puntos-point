@@ -45,6 +45,28 @@ services:
       - REDIS_PORT=6379
       - REDIS_PASSWORD=eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
       - RUN_SEED=false
+  app-sidekiq:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ./start-sidekiq
+    image: app:dev
+    volumes:
+      - .:/app
+      - bundle:/box
+    depends_on:
+      - db
+      - cache
+    environment:
+      - SECRET_KEY_BASE=this-is-a-secure-secret-key-12-factors
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USERNAME=postgres
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      - RUN_SEED=false
   bundle:
     image: busybox
     volumes:
